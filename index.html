@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Average+Sans&family=Faster+One&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/tailwindcss">
+      @layer base {
+        body {
+          font-family: "Average Sans", sans-serif;
+          background-color: #f9f6f0;
+        }
+      }
+      @layer components {
+        .header {
+          @apply rounded rounded-b-md shadow-lg bg-white px-4 py-2 flex justify-around items-center mb-4;
+        }
+        .message {
+          @apply shadow-lg bg-white p-4 flex flex-col justify-between items-center mb-4;
+          border-radius: 25px 25px 25px 0;
+        }
+        .send {
+          @apply bg-green-500 text-white px-4 py-2 rounded-md shadow-lg ml-3;
+        }
+        .in-ph {
+          @apply flex w-full justify-between items-center mb-4;
+        }
+        .text {
+          width: 100%;
+          border-radius: 15px 15px 0 15px;
+          @apply px-4 py-2;
+        }
+        .phonenumber {
+          width: 100%;
+          letter-spacing: 1rem;
+          text-align: center;
+          @apply mb-4 px-4 py-2;
+        }
+        .scan {
+          @apply w-full flex justify-center items-center mb-4 rounded rounded-md;
+        }
+        .footer {
+          @apply text-center text-2xl bg-white p-4 rounded-t-lg text-green-500;
+          position: fixed;
+          bottom: 0;
+          width: 90%;
+          left: 5%;
+          font-family: "Faster One", cursive;
+        }
+        .alert {
+          margin-bottom: 100px;
+        }
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex flex-col p-4">
+      <div class="header">
+        <img
+          src="https://res.cloudinary.com/sankarkvs/image/upload/v1653489116/nowhatsapp/whatsapp_byp7nf.png"
+          height="30px"
+          width="30px"
+          class="inline mr-2"
+          alt=""
+        />
+        Send message without saving their number !
+      </div>
+      <div class="message">
+        <p>
+          Dont want to save someones' contact but want to send a quick message,
+          this is the tool for you.
+        </p>
+      </div>
+      <div>
+        <input type="tel" placeholder="9345678553" class="phonenumber" />
+      </div>
+      <div class="in-ph">
+        <textarea
+          type="text"
+          class="text"
+          rows="2"
+          placeholder="hey!! how are you ??"
+        ></textarea>
+        <button class="send">SEND</button>
+      </div>
+      <div class="scan">
+        <div id="placeHolder"></div>
+      </div>
+      <div
+        class="alert flex p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800"
+        role="alert"
+      >
+        <svg
+          class="inline flex-shrink-0 mr-3 w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+        <div>
+          <span class="font-medium">Info!</span> Scan here to send message in
+          mobile.
+        </div>
+      </div>
+    </div>
+    <div class="footer">Quick WhatZapp</div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"
+      integrity="sha512-ZDSPMa/JM1D+7kdg2x3BsruQ6T/JpJo3jWDWkCZsP+5yVyp1KfESqLI+7RqB5k24F7p2cV7i2YHh/890y6P6Sw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      var typeNumber = 4;
+      var errorCorrectionLevel = "L";
+      var qr = qrcode(typeNumber, errorCorrectionLevel);
+      qr.addData("Hi!");
+      qr.make();
+      document.getElementById("placeHolder").innerHTML = qr.createImgTag(6);
+    </script>
+  </body>
+</html>
